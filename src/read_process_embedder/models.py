@@ -22,7 +22,7 @@ class ReadProcessEmbedder(pl.LightningModule):
         lr: float = 0.001,
     ):
         super().__init__()
-        self.save_hyperparameters()
+        self.save_hyperparameters(ignore=["criterion"])
 
         self.feature_size = feature_size
         self.output_size = output_size
