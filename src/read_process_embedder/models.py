@@ -1,6 +1,6 @@
 import lightning as pl
 import torch
-from jaxtyping import Float, Shaped
+from jaxtyping import Float
 from torch import Tensor, nn, optim
 from torchrl.modules import MLP
 
@@ -53,8 +53,8 @@ class ReadProcessEmbedder(pl.LightningModule):
         self.criterion = criterion
 
     def forward(
-        self, input_set: Shaped[Tensor, "N L {self.feature_size}"]
-    ) -> Shaped[Tensor, "N {self.output_size}"]:
+        self, input_set: Float[Tensor, "N L {self.feature_size}"]
+    ) -> Float[Tensor, "N {self.output_size}"]:
         batch_size = input_set.shape[0]
         seq_length = input_set.shape[1]  # noqa: F841, variable is used in array type hints
         memories: Float[Tensor, "{batch_size} {seq_length} {self.memory_size}"] = (
